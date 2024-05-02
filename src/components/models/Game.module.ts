@@ -3,3 +3,8 @@ export type ChessMove = {
   to: string;
   promotion?: string;
 };
+
+export enum ECurrentPlayer {
+  WHITE = "white",
+  BLACK = "black",
+}
