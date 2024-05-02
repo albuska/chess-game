@@ -1,0 +1,15 @@
+{
+  "header": {
+    "home": "Home",
+    "playBoard": "Game"
+  },
+  "hero": {
+    "secondTitle": "Hi, my name is",
+    "title": "Albina Anistratenko.",
+    "text": "I'm a front-end (full stack) web developer with a passion for building efficient websites and web applications using core technologies such as HTML, CSS and JavaScript.",
+    "goPlayBoardBtn": "Let's start playing!"
+  },
+  "notFoundPage": {
+    "notFoundPageBtn": "Back to the home page"
+  }
+}
