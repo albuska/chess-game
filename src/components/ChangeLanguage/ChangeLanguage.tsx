@@ -12,6 +12,7 @@ const ChangeLanguage = () => {
       setCurrentLanguage(savedLanguage);
       i18n.changeLanguage(savedLanguage);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChangeLanguage = (language: string) => {
