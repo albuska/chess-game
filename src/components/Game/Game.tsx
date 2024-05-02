@@ -1,79 +1,47 @@
-import { useState, useMemo, useCallback, FC } from "react";
+import { useState } from "react";
 import { Chessboard } from "react-chessboard";
-import { Chess, Square } from "chess.js";
-import { CustomDialog } from "../CustomDialog";
-import { ChessMove } from "../models";
+import { Chess } from "chess.js";
 import { GameContainer } from "./game.styles";
 
-interface IGame {
-  players?: string[];
-  room?: string;
-  orientation?: string;
-  cleanup?: () => void;
-}
+const Game = () => {
+  const [game, setGame] = useState(new Chess());
 
-const Game: FC<IGame> = ({ players, room, orientation, cleanup }) => {
-  const chess = useMemo(() => new Chess(), []); // <- 1
-  const [fen, setFen] = useState(chess.fen()); // <- 2
-  const [over, setOver] = useState("");
+  function safeGameMutate(modify: any) {
+    setGame((g) => {
+      const update = { ...g };
+      modify(update);
+      return update;
+    });
+  }
+  function makeRandomMove() {
+    const possibleMove = game.moves();
 
-  console.log(players, room, orientation, cleanup);
+    if (game.game_over() || game.in_draw() || possibleMove.length === 0) return;
 
-  const makeAMove = useCallback(
-    (move: ChessMove) => {
-      try {
-        const result = chess.move(move);
-        setFen(chess.fen());
-
-        console.log("over, checkmate", chess.isGameOver(), chess.isCheckmate());
-
-        if (chess.isGameOver()) {
-          if (chess.isCheckmate()) {
-            setOver(
-              `Checkmate! ${chess.turn() === "w" ? "black" : "white"} wins!`
-            );
-          } else if (chess.isDraw()) {
-            setOver("Draw");
-          } else {
-            setOver("Game over");
-          }
-        }
-
-        return result;
-      } catch (e) {
-        return null;
-      }
-    },
-    [chess]
-  );
-
-  function onDrop(sourceSquare: Square, targetSquare: Square) {
-    const moveData = {
-      from: sourceSquare,
-      to: targetSquare,
-      color: chess.turn(),
-    };
-
-    const move = makeAMove(moveData);
-
-    if (move === null) return false;
-
-    return true;
+    const randomIndex = Math.floor(Math.random() * possibleMove.length);
+    safeGameMutate((game: any) => {
+      game.move(possibleMove[randomIndex]);
+    });
   }
 
+  function onDrop(source: string, target: string) {
+    let move = null;
+    safeGameMutate((game: any) => {
+      move = game.move({
+        from: source,
+        to: target,
+        promotion: "q",
+      });
+    });
+    if (move == null) return false;
+    setTimeout(makeRandomMove, 200);
+    return true;
+  }
   return (
     <GameContainer>
       <div className="board">
-        <Chessboard position={fen} onPieceDrop={onDrop} /> {/**  <- 4 */}
+        <Chessboard position={game.fen()} onPieceDrop={onDrop} />
       </div>
-      <CustomDialog // <- 5
-        open={Boolean(over)}
-        title={over}
-        contentText={over}
-        handleContinue={() => {
-          setOver("");
-        }}
-      />
     </GameContainer>
   );
 };
