@@ -29,6 +29,7 @@ const Game = () => {
   );
   const [gameOver, setGameOver] = useState<boolean>(true);
   const [showResultModal, setShowResultModal] = useState<boolean>(false);
+  const [winner, setWinner] = useState<string>("");
 
   const { t } = useTranslation();
 
@@ -45,12 +46,16 @@ const Game = () => {
   useEffect(() => {
     if (whiteTimer === 0) {
       setGameOver(true);
+      setGameStarted(false);
+      setWinner(ECurrentPlayer.BLACK);
       setShowResultModal(true);
       return;
     }
 
     if (blackTimer === 0) {
       setGameOver(true);
+      setGameStarted(false);
+      setWinner(ECurrentPlayer.WHITE);
       setShowResultModal(true);
       return;
     }
@@ -98,11 +103,21 @@ const Game = () => {
             possibleMove.length === 0 ||
             gameOver
           }
-          onClose={() => setGameOver(false)}
+          onClose={() => {
+            setGameOver(false);
+            setGameStarted(true);
+          }}
           setGameStarted={setGameStarted}
+          setGameOver={setGameOver}
           blackTimer={blackTimer}
           whiteTimer={whiteTimer}
-          winner={game.in_checkmate() ? "Black" : "White"}
+          winner={
+            winner
+              ? winner.charAt(0).toUpperCase() + winner.slice(1)
+              : game.in_checkmate()
+              ? "Black"
+              : "White"
+          }
         />
       );
 
@@ -158,6 +173,7 @@ const Game = () => {
           <span
             style={{
               color: currentPlayer === ECurrentPlayer.BLACK ? "red" : "",
+              width: "40px",
             }}
           >
             {blackTimer}
@@ -189,11 +205,21 @@ const Game = () => {
       {showResultModal && (
         <ResultModal
           open={showResultModal}
-          onClose={() => setGameOver(false)}
+          onClose={() => {
+            setGameOver(false);
+            setGameStarted(true);
+          }}
           setGameStarted={setGameStarted}
+          setGameOver={setGameOver}
           blackTimer={blackTimer}
           whiteTimer={whiteTimer}
-          winner={game.in_checkmate() ? "Black" : "White"}
+          winner={
+            winner
+              ? winner.charAt(0).toUpperCase() + winner.slice(1)
+              : game.in_checkmate()
+              ? "Black"
+              : "White"
+          }
         />
       )}
     </GameContainer>

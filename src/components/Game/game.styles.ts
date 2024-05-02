@@ -42,7 +42,7 @@ const TimerBox = styled.div`
 
 export const TimerBoxWhite = styled(TimerBox)`
   top: 50%;
-  right: 20px;
+  right: -5px;
   transform: translate(0, -50%);
 `;
 
@@ -53,6 +53,7 @@ export const TimerBoxBlack = styled(TimerBox)`
 `;
 
 export const TimerText = styled.p`
+  width: 300px;
   font-size: 1.2rem;
   font-weight: 400;
   color: var(--accent-light-theme-color);
