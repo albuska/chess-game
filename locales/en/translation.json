@@ -4,8 +4,8 @@
     "playBoard": "Game"
   },
   "hero": {
-    "secondTitle": "Created by",
-    "title": "Albina Anistratenko.",
+    "secondTitle": "Created by Albina Anistratenko.",
+    "title": "Chess game",
     "text": "I invite you to join an exciting game of chess! Unleash your strategic potential! Immerse yourself in the world of chess and test your skills against a computer opponent. Embark on an amazing chess match!",
     "goPlayBoardBtn": "Let's start playing!"
   },
