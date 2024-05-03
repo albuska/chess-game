@@ -4,12 +4,22 @@
     "playBoard": "Game"
   },
   "hero": {
-    "secondTitle": "Hi, my name is",
+    "secondTitle": "Created by",
     "title": "Albina Anistratenko.",
-    "text": "I'm a front-end (full stack) web developer with a passion for building efficient websites and web applications using core technologies such as HTML, CSS and JavaScript.",
+    "text": "I invite you to join an exciting game of chess! Unleash your strategic potential! Immerse yourself in the world of chess and test your skills against a computer opponent. Embark on an amazing chess match!",
     "goPlayBoardBtn": "Let's start playing!"
+  },
+  "game": {
+    "gameStartedBtn": "Start game"
   },
   "notFoundPage": {
     "notFoundPageBtn": "Back to the home page"
+  },
+  "resultModal": {
+    "resultModalTitle": "Game results",
+    "resultWinnerTitle": "Winner",
+    "timerWhiteText": "How much time is left for the player with white chess",
+    "timerBlackText": "How much time is left for the player with black chess"
   }
+
 }
