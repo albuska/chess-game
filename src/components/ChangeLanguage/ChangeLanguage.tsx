@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ChangeLanguageBtn } from "./changeLanguage.styles";
+import { EChangeLanguage } from "../models";
 
 const ChangeLanguage = () => {
   const { i18n } = useTranslation();
@@ -25,11 +26,17 @@ const ChangeLanguage = () => {
     <>
       <ChangeLanguageBtn
         onClick={() =>
-          handleChangeLanguage(currentLanguage === "en" ? "uk" : "en")
+          handleChangeLanguage(
+            currentLanguage === EChangeLanguage.EN
+              ? EChangeLanguage.UK
+              : EChangeLanguage.EN
+          )
         }
         className="dark:text-[var(--main-dark-theme-color)]"
       >
-        {currentLanguage === "en" ? "EN" : "UK"}
+        {currentLanguage === EChangeLanguage.EN
+          ? EChangeLanguage.EN.toUpperCase()
+          : EChangeLanguage.UK.toUpperCase()}
       </ChangeLanguageBtn>
     </>
   );

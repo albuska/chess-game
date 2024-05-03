@@ -19,7 +19,7 @@ export const ChangeThemeButtonOverlay = styled.button<IProps>`
   width: 40px;
   height: 22px;
   background-color: ${({ theme }) =>
-    theme === "dark" ? "rgba(255, 255, 255, 0.4)" : "#ddd"};
+    theme === "dark" ? "rgba(255, 255, 255, 0.4)" : "#dddddd"};
   border-radius: 32px;
   padding: 3px;
   display: flex;

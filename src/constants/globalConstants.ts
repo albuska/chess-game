@@ -13,7 +13,8 @@ interface ISocialsList {
   icon: string;
 }
 
-export const FIXED_TIMER_TIME = 20;
+// export const FIXED_TIMER_TIME = 300;
+export const FIXED_TIMER_TIME = 50;
 
 export const HeaderNavLinks: IHeaderNavLinks[] = [
   {

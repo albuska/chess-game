@@ -5,7 +5,6 @@ export const HeroSectionContainer = styled.section`
   position: relative;
   height: 100vh;
   width: 100%;
-  /* padding-top: 150px; */
   display: flex;
   justify-content: center;
   gap: 200px;
@@ -14,7 +13,6 @@ export const HeroSectionContainer = styled.section`
 `;
 
 export const AboutMyselfContainer = styled.article`
-  /* position: relative; */
   display: flex;
   flex-direction: column;
   justify-content: center;
