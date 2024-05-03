@@ -1,4 +1,5 @@
 import { Modal } from "@mui/material";
+import { Chess } from "chess.js";
 import { useNavigate } from "react-router-dom";
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
@@ -13,25 +14,34 @@ import {
   ResultModalTitleStyled,
   ResultWinnerTitleStyled,
 } from "./resultModal.styles";
+import { FIXED_TIMER_TIME } from "../../constants/globalConstants";
 
 interface IResultModal {
   open: boolean;
   onClose: () => void;
   setGameStarted: (value: boolean) => void;
+  setShowResultModal: (value: boolean) => void;
   setGameOver: (value: boolean) => void;
   blackTimer: number;
   whiteTimer: number;
   winner: string;
+  setGame: (value: any) => void;
+  setWhiteTimer: (value: number) => void;
+  setBlackTimer: (value: number) => void;
 }
 
 const ResultModal: FC<IResultModal> = ({
   open,
   onClose,
   setGameStarted,
+  setShowResultModal,
   setGameOver,
   blackTimer,
   whiteTimer,
   winner,
+  setGame,
+  setWhiteTimer,
+  setBlackTimer,
 }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -87,6 +97,10 @@ const ResultModal: FC<IResultModal> = ({
               onClick={() => {
                 setGameStarted(true);
                 setGameOver(false);
+                setShowResultModal(false);
+                setGame(new Chess());
+                setWhiteTimer(FIXED_TIMER_TIME);
+                setBlackTimer(FIXED_TIMER_TIME);
               }}
             >
               {t("game.gameStartedBtn")}

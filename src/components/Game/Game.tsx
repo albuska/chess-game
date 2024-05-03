@@ -15,9 +15,7 @@ import getRandomThinkTime from "../utils/getRandomThinkTime";
 import whiteHorse from "../../assets/images/horseWhite.png";
 import blackHorse from "../../assets/images/horse.png";
 import { ResultModal } from "../ResultModal";
-
-// const FIXED_TIMER_TIME = 300;
-const FIXED_TIMER_TIME = 20;
+import { FIXED_TIMER_TIME } from "../../constants/globalConstants";
 
 const Game = () => {
   const [gameStarted, setGameStarted] = useState<boolean>(false);
@@ -61,6 +59,7 @@ const Game = () => {
     }
   }, [whiteTimer, blackTimer, gameOver]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const decreaseTimer = () => {
     if (!gameStarted) return;
     if (currentPlayer === "white") {
@@ -77,7 +76,7 @@ const Game = () => {
   useEffect(() => {
     const interval = setInterval(decreaseTimer, 1000);
     return () => clearInterval(interval);
-  }, [whiteTimer, blackTimer, currentPlayer, gameStarted]);
+  }, [whiteTimer, blackTimer, currentPlayer, gameStarted, decreaseTimer]);
 
   const safeGameMutate = (modify: any) => {
     setGame((g) => {
@@ -108,9 +107,13 @@ const Game = () => {
             setGameStarted(true);
           }}
           setGameStarted={setGameStarted}
+          setShowResultModal={setShowResultModal}
           setGameOver={setGameOver}
           blackTimer={blackTimer}
           whiteTimer={whiteTimer}
+          setGame={setGame}
+          setWhiteTimer={setWhiteTimer}
+          setBlackTimer={setBlackTimer}
           winner={
             winner
               ? winner.charAt(0).toUpperCase() + winner.slice(1)
@@ -196,6 +199,9 @@ const Game = () => {
             onClick={() => {
               setGameStarted(true);
               setGameOver(false);
+              setGame(new Chess());
+              setWhiteTimer(FIXED_TIMER_TIME);
+              setBlackTimer(FIXED_TIMER_TIME);
             }}
           >
             {t("game.gameStartedBtn")}
@@ -213,6 +219,10 @@ const Game = () => {
           setGameOver={setGameOver}
           blackTimer={blackTimer}
           whiteTimer={whiteTimer}
+          setGame={setGame}
+          setWhiteTimer={setWhiteTimer}
+          setBlackTimer={setBlackTimer}
+          setShowResultModal={setShowResultModal}
           winner={
             winner
               ? winner.charAt(0).toUpperCase() + winner.slice(1)
