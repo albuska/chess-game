@@ -1,30 +1,25 @@
-# React + TypeScript + Vite
+# **Шахи**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# **Chess Game**
 
-Currently, two official plugins are available:
+### Гра для дітей та дорослих
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Game for adults and children
 
-## Expanding the ESLint configuration
+![Chess](/src/assets/images/chessImg.png "chess")
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## *React, TypeScript, Vite, Tailwind, Styled-components*
 
-- Configure the top-level `parserOptions` property like this:
+Додаток складається з трьох сторінок: Home Page (стисла інформація про автора, навігація на сторінку гри), Game(безпосередньо сама гра, виведення модального вікна з результатами по закінченню гри) та NotFound (в разі неправильної маршрутизації, коли не знайдено відповідний роут). Реалізована зміна теми та багатомовність (українська та англійська) зі збереженням у Local Storage. 
+Суть гри заключається в тому, що користувач грає у шахи з ботом по обмеженому часу для ходів для кожного гравця. Гра закінчується або коли мат одному із гравців, або коли у когось із них закінчився час. По закінченню гри виводиться модальне вікно із результатами гри та кнопками, щоб зіграти повторно або перейти на головну сторінку. 
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+The application consists of three pages: Home Page (brief information about the author, navigation to the game page), Game (directly the game itself, displaying a modal window with the results after the game is finished) and NotFound (in case of incorrect routing, when the appropriate route is not found).Implemented change of theme and multilingualism (Ukrainian and English) with saving in Local Storage.
+The essence of the game is that the user plays chess with the bot for a limited amount of time for each player's moves. The game ends either when one of the players has checkmate or when one of them runs out of time. At the end of the game, a modal window is displayed with the results of the game and buttons to play again or go to the main page.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+[Покликання на живу сторінку](https://albuska.github.io/chess-game/).
+
+[Покликання на репозиторій на GitHub](https://github.com/albuska/chess-game).
+
+# Грайте на насолоджуйтеся =) 
+
+ # PLAY AND ENJOY =) 

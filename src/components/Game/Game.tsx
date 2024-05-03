@@ -39,6 +39,9 @@ const Game = () => {
         setCurrentPlayer(ECurrentPlayer.BLACK);
       }
     }
+    if (game.game_over()) {
+      setShowResultModal(true);
+    }
   }, [game]);
 
   useEffect(() => {
@@ -61,7 +64,7 @@ const Game = () => {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const decreaseTimer = () => {
-    if (!gameStarted) return;
+    if (!gameStarted || game.game_over() === true) return;
     if (currentPlayer === "white") {
       if (whiteTimer > 0) {
         setWhiteTimer((prevTimer) => prevTimer - 1);
@@ -93,36 +96,12 @@ const Game = () => {
       game.in_draw() ||
       possibleMove.length === 0 ||
       gameOver
-    )
-      return (
-        <ResultModal
-          open={
-            game.game_over() ||
-            game.in_draw() ||
-            possibleMove.length === 0 ||
-            gameOver
-          }
-          onClose={() => {
-            setGameOver(false);
-            setGameStarted(true);
-          }}
-          setGameStarted={setGameStarted}
-          setShowResultModal={setShowResultModal}
-          setGameOver={setGameOver}
-          blackTimer={blackTimer}
-          whiteTimer={whiteTimer}
-          setGame={setGame}
-          setWhiteTimer={setWhiteTimer}
-          setBlackTimer={setBlackTimer}
-          winner={
-            winner
-              ? winner.charAt(0).toUpperCase() + winner.slice(1)
-              : game.in_checkmate()
-              ? "Black"
-              : "White"
-          }
-        />
-      );
+    ) {
+      setGameOver(true);
+      setGameStarted(false);
+      setShowResultModal(true);
+      return;
+    }
 
     const randomIndex = Math.floor(Math.random() * possibleMove.length);
     safeGameMutate((game: any) => {
@@ -158,7 +137,7 @@ const Game = () => {
       <TimerBoxWhite>
         <img src={whiteHorse} width={150} height={75} alt="White horse" />
         <TimerText className="font-gravity dark:text-[var(--accent-dark-theme-color)]">
-          White Timer:{" "}
+          {t("game.timerWhiteText")}:{" "}
           <span
             style={{
               color: currentPlayer === ECurrentPlayer.WHITE ? "red" : "",
@@ -166,13 +145,13 @@ const Game = () => {
           >
             {whiteTimer}
           </span>{" "}
-          {whiteTimer > 1 ? "seconds" : "second"}
+          {whiteTimer > 1 ? t("game.secondsText") : t("game.secondText")}
         </TimerText>
       </TimerBoxWhite>
       <TimerBoxBlack>
         <img src={blackHorse} width={150} height={75} alt="Black horse" />
         <TimerText className="font-gravity dark:text-[var(--accent-dark-theme-color)]">
-          Black Timer:{" "}
+          {t("game.timerBlackText")}:{" "}
           <span
             style={{
               color: currentPlayer === ECurrentPlayer.BLACK ? "red" : "",
@@ -181,7 +160,7 @@ const Game = () => {
           >
             {blackTimer}
           </span>{" "}
-          {blackTimer > 1 ? "seconds" : "second"}
+          {blackTimer > 1 ? t("game.secondsText") : t("game.secondText")}
         </TimerText>
       </TimerBoxBlack>
       {!gameStarted && (
@@ -190,9 +169,9 @@ const Game = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            zIndex: 1000,
           }}
           open={true}
-          onClose={() => setGameStarted(true)}
         >
           <GameStartedBtn
             className="font-gravity dark:bg-[#64FFDB55] dark:text-[var(--accent-dark-theme-color)] dark:border-[var(--accent-dark-theme-color)] dark:hover:bg-[#64FFDB33]"
@@ -212,8 +191,7 @@ const Game = () => {
         <ResultModal
           open={showResultModal}
           onClose={() => {
-            setGameOver(false);
-            setGameStarted(true);
+            setShowResultModal(false);
           }}
           setGameStarted={setGameStarted}
           setGameOver={setGameOver}
@@ -227,8 +205,8 @@ const Game = () => {
             winner
               ? winner.charAt(0).toUpperCase() + winner.slice(1)
               : game.in_checkmate()
-              ? "Black"
-              : "White"
+              ? "White"
+              : "Black"
           }
         />
       )}

@@ -10,7 +10,11 @@
     "goPlayBoardBtn": "Let's start playing!"
   },
   "game": {
-    "gameStartedBtn": "Start game"
+    "gameStartedBtn": "Start game",
+    "timerWhiteText": "White Timer",
+    "timerBlackText": "Black Timer",
+    "secondsText": "seconds",
+    "secondText": "second"
   },
   "notFoundPage": {
     "notFoundPageBtn": "Back to the home page"
@@ -19,7 +23,8 @@
     "resultModalTitle": "Game results",
     "resultWinnerTitle": "Winner",
     "timerWhiteText": "How much time is left for the player with white chess",
-    "timerBlackText": "How much time is left for the player with black chess"
+    "timerBlackText": "How much time is left for the player with black chess",
+    "gameDurationText": "Game duration"
   }
 
 }

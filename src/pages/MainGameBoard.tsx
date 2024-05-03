@@ -3,7 +3,7 @@ import { Game } from "../components/Game";
 
 const MainGameBoard = () => {
   return (
-    <Container>
+    <Container style={{ height: "100vh" }}>
       <Game />
     </Container>
   );

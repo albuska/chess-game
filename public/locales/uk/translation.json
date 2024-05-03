@@ -10,7 +10,11 @@
     "goPlayBoardBtn": "Давай починати грати!"
   },
   "game": {
-    "gameStartedBtn": "Почати гру"
+    "gameStartedBtn": "Почати гру",
+    "timerWhiteText": "Таймер білого",
+    "timerBlackText": "Таймер чорного",
+    "secondsText": "секунди",
+    "secondText": "секунда"
   },
   "notFoundPage": {
     "notFoundPageBtn": "Повернутися на головну сторінку"
@@ -19,6 +23,7 @@
     "resultModalTitle": "Результати гри",
     "resultWinnerTitle": "Переможець",
     "timerWhiteText": "Скільки часу залишилося у гравця з білими шахами",
-    "timerBlackText": "Скільки часу залишилося у гравця з чорними шахами"
+    "timerBlackText": "Скільки часу залишилося у гравця з чорними шахами",
+    "gameDurationText": "Тривалість гри"
   }
 }

@@ -69,13 +69,16 @@ const ResultModal: FC<IResultModal> = ({
             <ResultModalTextItem>
               <ResultModalText className="font-konnect">
                 {t("resultModal.timerWhiteText")}:{" "}
-                <span className="text-[blue]">{whiteTimer}</span>
+                <span className="text-[blue] text-[30px]"> {whiteTimer}</span>
               </ResultModalText>
             </ResultModalTextItem>
             <ResultModalTextItem>
               <ResultModalText className="font-konnect">
                 {t("resultModal.timerBlackText")}:{" "}
-                <span className="text-[#ffd82c]">{blackTimer}</span>
+                <span className="text-[#ffd82c] text-[30px]">
+                  {" "}
+                  {blackTimer}
+                </span>
               </ResultModalText>
             </ResultModalTextItem>
           </ResultModalTextsList>
