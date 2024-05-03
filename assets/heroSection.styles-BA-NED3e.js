@@ -1,15 +1,13 @@
-import{u as t,L as e}from"./index-Dad-tuMy.js";const n=t.section`
+import{u as t,L as e}from"./index-By-giUWn.js";const n=t.section`
   position: relative;
   height: 100vh;
   width: 100%;
-  /* padding-top: 150px; */
   display: flex;
   justify-content: center;
   gap: 200px;
   align-items: center;
   padding-bottom: 100px;
 `,i=t.article`
-  /* position: relative; */
   display: flex;
   flex-direction: column;
   justify-content: center;
